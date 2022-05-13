@@ -1,0 +1,22 @@
+{
+	"name": "hatochan",
+	"manifest_version": 3,
+	"description": "better UI for NUCT", 
+	"version": "0.1",
+	"permissions": ["activeTab","scripting"],
+	"background": {
+		"service_worker": "alert.js"
+	},
+	"action": {
+		"default_icon": {
+			"16": "images/pigeon.png"
+		}
+	},
+	"content_scripts": [
+		{
+		  "matches": ["https://ct.nagoya-u.ac.jp/*"],
+		  "js": ["script.js"]
+		}
+	  ]
+}
+
