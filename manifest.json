@@ -14,7 +14,7 @@
 	},
 	"content_scripts": [
 		{
-		  "matches": ["https://ct.nagoya-u.ac.jp/*"],
+		  "matches": ["https://ct.nagoya-u.ac.jp/*", "https://tact.ac.thers.ac.jp/*"],
 		  "js": ["script.js"]
 		}
 	  ]

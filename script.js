@@ -5,16 +5,20 @@ const changeTable = () => {
     const button = {};
     const topnav = document.getElementById("topnav");
     const links = document.getElementsByClassName('link-container');
-    const len = links.length;
-    for (let i = 0; i < len; i++){
+//     const len = links.length;
+    for (let i = 0; i < links.length; i++){
         const title = links.item(i).title;
-        const classifier = jpn2eng(title.substr(-3).substr(0, 2));
+        const chrToRemove = "限";
+        const removedTitle = title.split(chrToRemove).join("");
+
+        const classifier = jpn2eng(removedTitle.substr(-3).substr(0, 2));
 
         const tag = "<a href=" + links.item(i).href + ">" + "<span>" + title + "</span>" + "</a>"
         button[classifier] = tag;
     }
     console.log(button)
     topnav.innerHTML = makeTable(button);
+    console.log(button)
 }
 const makeTable = (button) => {
     const headTable = "<table><tr><th>月曜日</th><th>火曜日</th><th>水曜日</th><th>木曜日</th><th>金曜日</th></tr>";
