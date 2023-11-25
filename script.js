@@ -38,15 +38,17 @@ const changeTable = () => {
         const title = links.item(i).title;
         const chrToRemove = "限";
         const removedTitle = title.split(chrToRemove).join("");
-        let classifier = jpn2eng(removedTitle.substr(-3).substr(0, 2));
+        const classifier = jpn2eng(removedTitle.substr(-3).substr(0, 2));
+        const classifier2 = jpn2eng(removedTitle.substr(-5).substr(0, 2)); // 画像処理対策
         // console.log(classifier)
         // if () {
         //     console.log(title)
         //     classifier = jpn2eng(removedTitle.substr(-5).substr(0, 2));
         // }
-        const tagBtnName = title.replace(/\(.+$/, "")
+        const tagBtnName = title.replace(/(\(|（).+$/, "")
         const tag = "<a href=" + links.item(i).href + ">" + "<span>" + tagBtnName + "</span>" + "</a>"
         button[classifier] = tag;
+        button[classifier2] = tag;
     }
     console.log(button)
     topnav.innerHTML = makeTable(button);
