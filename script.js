@@ -2,18 +2,50 @@
 console.log('ほろっほぅ')
 
 const changeTable = () => {
+    // ボタンの辞書
     const button = {};
+    for (let i = 0; i < 5; i++) {
+
+        let week = "";
+        switch (i) {
+            case 0:
+                week = "mon_";
+                break
+            case 1:
+                week = "tue_";
+                break
+            case 2:
+                week = "wed_";
+                break
+            case 3:
+                week = "thu_";
+                break
+            case 4:
+                week = "fri_";
+                break
+        }
+        for (let j = 0; j < 5; j++) {
+            const period = (j + 1).toString();
+            button[week + period] = "■■■■■■■■■■■■■■■■■■■■";// "nullnullうなぎ";
+        }
+    }
+    // ボタンの集合が入っているidを指定
     const topnav = document.getElementById("topnav");
-    const links = document.getElementsByClassName('link-container');
-//     const len = links.length;
-    for (let i = 0; i < links.length; i++){
+    // ボタンの集合を取る．
+    const links = topnav.getElementsByClassName('link-container');
+    // ボタン集合を精査する．
+    for (let i = 0; i < links.length; i++) {
         const title = links.item(i).title;
         const chrToRemove = "限";
         const removedTitle = title.split(chrToRemove).join("");
-
-        const classifier = jpn2eng(removedTitle.substr(-3).substr(0, 2));
-
-        const tag = "<a href=" + links.item(i).href + ">" + "<span>" + title + "</span>" + "</a>"
+        let classifier = jpn2eng(removedTitle.substr(-3).substr(0, 2));
+        // console.log(classifier)
+        // if () {
+        //     console.log(title)
+        //     classifier = jpn2eng(removedTitle.substr(-5).substr(0, 2));
+        // }
+        const tagBtnName = title.replace(/\(.+$/, "")
+        const tag = "<a href=" + links.item(i).href + ">" + "<span>" + tagBtnName + "</span>" + "</a>"
         button[classifier] = tag;
     }
     console.log(button)
@@ -33,23 +65,23 @@ const makeTable = (button) => {
 
 const jpn2eng = (str) => {
     const jpnMap = {
-        "１": "1", 
-        "２": "2", 
-        "３": "3", 
-        "４": "4", 
-        "５": "5", 
-        "月": "mon_", 
-        "火": "tue_", 
-        "水": "wed_", 
-        "木": "thu_", 
-        "金": "fri_", 
-        "土": "sat_", 
+        "１": "1",
+        "２": "2",
+        "３": "3",
+        "４": "4",
+        "５": "5",
+        "月": "mon_",
+        "火": "tue_",
+        "水": "wed_",
+        "木": "thu_",
+        "金": "fri_",
+        "土": "sat_",
     }
     const reg = new RegExp('(' + Object.keys(jpnMap).join('|') + ')', 'g');
     return str
-            .replace(reg, function (match) {
-                return jpnMap[match];
-            })
+        .replace(reg, function (match) {
+            return jpnMap[match];
+        })
 };
 
 
