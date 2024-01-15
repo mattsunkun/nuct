@@ -26,7 +26,7 @@ const changeTable = () => {
         }
         for (let j = 0; j < 5; j++) {
             const period = (j + 1).toString();
-            button[week + period] = "■■■■■■■■■■■■■■■■■■■■";// "nullnullうなぎ";
+	button[week + period] = "　".repeat(20);// "nullnullうなぎ";
         }
     }
     // ボタンの集合が入っているidを指定
